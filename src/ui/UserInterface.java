@@ -5,13 +5,9 @@
 package ui;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.regex.Pattern;
 import matrix.Matrix;
 
 /**
@@ -140,8 +136,22 @@ public class UserInterface {
             return;
         }
 
-        if (!split[1].equals("=")) {
-            System.out.println("Variable \"" + split[0] + "\" has a null value! Cannot perform command!");
+        if (var1 == null) {
+            if (split[1].equals("=")) {
+                String[] newSplit = new String[split.length - 2];
+                System.arraycopy(split, 2, new String[split.length - 2], 2, split.length - 2);
+                var1 = calculateCommand(newSplit);
+                variables.put(split[0], var1);
+            } else {
+                System.out.println("Variable \"" + split[0] + "\" has a null value! Cannot perform command!");
+            }
+        } else {
         }
+    }
+
+    private Matrix calculateCommand(String[] split) {
+        Matrix result = null;
+
+        return result;
     }
 }
