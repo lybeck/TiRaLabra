@@ -34,6 +34,23 @@ public class Matrix {
         cols = data[0].length;
     }
 
+    private boolean validMatrix(double[][] matrix) {
+        for (int i = 0; i < matrix.length - 1; i++) {
+            if (matrix[i].length != matrix[i + 1].length) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private double[][] copyOfMatrix(double[][] matrix) {
+        double[][] newMatrix = new double[matrix.length][matrix[0].length];
+        for (int i = 0; i < matrix.length; i++) {
+            System.arraycopy(matrix[i], 0, newMatrix[i], 0, matrix[i].length);
+        }
+        return newMatrix;
+    }
+
     public Matrix(Matrix orig) {
         this(orig.data);
     }
@@ -59,26 +76,9 @@ public class Matrix {
         }
         return m;
     }
-    
-    public static Matrix eye(int n){
+
+    public static Matrix eye(int n) {
         return eye(n, n);
-    }
-
-    private boolean validMatrix(double[][] matrix) {
-        for (int i = 0; i < matrix.length - 1; i++) {
-            if (matrix[i].length != matrix[i + 1].length) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private double[][] copyOfMatrix(double[][] matrix) {
-        double[][] newMatrix = new double[matrix.length][matrix[0].length];
-        for (int i = 0; i < matrix.length; i++) {
-            System.arraycopy(matrix[i], 0, newMatrix[i], 0, matrix[i].length);
-        }
-        return newMatrix;
     }
 
     public void print() {
@@ -124,12 +124,48 @@ public class Matrix {
     protected double[][] getData() {
         return data;
     }
-    
-    public Matrix add(Matrix m){
+
+    public Matrix scale(double k) {
+        return Operations.scale(this, k);
+    }
+
+    public Matrix add(double k) {
+        return Operations.add(this, k);
+    }
+
+    public Matrix add(Matrix m) {
         return Operations.add(this, m);
     }
-    
+
     public Matrix sub(Matrix m) {
         return Operations.subtract(this, m);
+    }
+
+    public Matrix mul(Matrix m) {
+        return mulNaive(m);
+    }
+
+    public Matrix mulNaive(Matrix m) {
+        return Operations.mulNaive(this, m);
+    }
+
+    public Matrix mulStrassen(Matrix m) {
+        return Operations.mulStrassen(this, m);
+    }
+
+    public Matrix pow(int e) {
+        return Operations.pow(this, e);
+    }
+
+    public Matrix transpose() {
+        return Operations.transpose(this);
+    }
+
+    public double det() {
+        return Operations.det(this);
+    }
+
+    public Matrix inv() {
+        return Operations.inv(this);
     }
 }

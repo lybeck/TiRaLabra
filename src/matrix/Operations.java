@@ -8,7 +8,7 @@ package matrix;
  *
  * @author lasse
  */
-public class Operations {
+class Operations {
 
     private static void checkSizesEqual(Matrix a, Matrix b) {
         if (a.rows != b.rows || a.cols != b.cols) {
@@ -16,7 +16,27 @@ public class Operations {
         }
     }
 
-    public static Matrix add(Matrix a, Matrix b) {
+    static Matrix scale(Matrix m, double k) {
+        Matrix result = new Matrix(m);
+        for (int i = 0; i < result.rows; i++) {
+            for (int j = 0; j < result.cols; j++) {
+                result.data[i][j] *= k;
+            }
+        }
+        return result;
+    }
+
+    static Matrix add(Matrix a, double k) {
+        Matrix result = new Matrix(a);
+        for (int i = 0; i < result.rows; i++) {
+            for (int j = 0; j < result.cols; j++) {
+                result.data[i][j] += k;
+            }
+        }
+        return result;
+    }
+
+    static Matrix add(Matrix a, Matrix b) {
         checkSizesEqual(a, b);
         Matrix result = new Matrix(a);
         for (int i = 0; i < result.rows; i++) {
@@ -27,7 +47,7 @@ public class Operations {
         return result;
     }
 
-    public static Matrix subtract(Matrix a, Matrix b) {
+    static Matrix subtract(Matrix a, Matrix b) {
         checkSizesEqual(a, b);
         Matrix result = new Matrix(a);
         for (int i = 0; i < result.rows; i++) {
@@ -38,21 +58,51 @@ public class Operations {
         return result;
     }
 
-    public static Matrix negate(Matrix m) {
-        Matrix result = new Matrix(m);
+    static Matrix negate(Matrix m) {
+        return scale(m, -1);
+    }
+
+    private static void checkMultiplicationSizes(Matrix m1, Matrix m2) throws IllegalArgumentException {
+        if (m1.cols != m2.rows) {
+            throw new IllegalArgumentException("In matrix multiplication the first matrix must have as many columns as the second has rows!");
+        }
+    }
+
+    static Matrix mulNaive(Matrix m1, Matrix m2) {
+        checkMultiplicationSizes(m1, m2);
+        Matrix result = new Matrix(m1.rows, m2.cols);
         for (int i = 0; i < result.rows; i++) {
             for (int j = 0; j < result.cols; j++) {
-                result.data[i][j] = -result.data[i][j];
+                for (int k = 0; k < m1.cols; k++) {
+                    result.data[i][j] += m1.data[i][k] * m2.data[k][j];
+                }
             }
         }
         return result;
     }
 
-    public static void main(String[] args) {
-        Matrix a = Matrix.ones(3, 4);
-        Matrix b = Matrix.eye(3, 4);
-        a.print();
-        b.print();
-        add(a, b).print();
+    static Matrix mulStrassen(Matrix m1, Matrix m2) {
+        checkMultiplicationSizes(m1, m2);
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    static Matrix pow(Matrix m, int e) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    static Matrix transpose(Matrix m) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    static double det(Matrix m) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    static Matrix inv(Matrix m) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    static Matrix pinv(Matrix m) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

@@ -18,7 +18,6 @@ public class UserInterface {
 
     private Scanner scanner;
     private HashMap<String, Matrix> variables;
-    private static final String SPLIT_PATTERN = "[\\s\\+\\-\\*\\=]";
 
     public UserInterface() {
         scanner = new Scanner(System.in);
