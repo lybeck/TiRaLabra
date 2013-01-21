@@ -51,6 +51,10 @@ public class MatrixTest {
     private Matrix createBigTestMatrix() {
         return createTestMatrix(11, 13);
     }
+    
+    private Matrix createTestMatrix(int n) {
+        return createTestMatrix(n, n);
+    }
 
     private Matrix createTestMatrix(int r, int c) {
         Matrix m = new Matrix(r, c);
@@ -417,23 +421,83 @@ public class MatrixTest {
 
     @Test
     public void matrixPowerTest1() {
+        double[][] a = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}};
+        Matrix m = new Matrix(a);
+
+        Matrix result = m.pow(3);
+
+        double[][] e = {
+            {468, 576, 684},
+            {1062, 1305, 1548},
+            {1656, 2034, 2412}};
+        Matrix expected = new Matrix(e);
+
+        assertMatrixEqual(expected, result);
     }
 
     @Test
     public void matrixPowerTest2() {
+        double[][] a = {
+            {1, 2, -1},
+            {-1, 1, -1},
+            {1, 1, 1}};
+        Matrix m = new Matrix(a);
+
+        Matrix result = m.pow(13);
+
+        double[][] e = {
+            {12001, 51182, -20741},
+            {-22681, 12001, -26561},
+            {26561, 20741, 10061}};
+        Matrix expected = new Matrix(e);
+
+        assertMatrixEqual(expected, result);
+    }
+    
+    @Test
+    public void matrixToPowerZeroIsIdentity(){
+        int n = 33;
+        Matrix m = createTestMatrix(n);
+        Matrix result = m.pow(0);
+        assertMatrixEqual(Matrix.eye(n), result);
     }
 
     @Test
     public void matrixTransposeTest1() {
+        Matrix m = smallTest.transpose();
+        assertEquals(smallTest.cols, m.rows);
+        assertEquals(smallTest.rows, m.cols);
+        for (int i = 0; i < smallTest.rows; i++) {
+            for (int j = 0; j < smallTest.cols; j++) {
+                assertEquals(smallTest.data[i][j], m.data[j][i], eps);
+            }
+        }
     }
 
     @Test
     public void matrixTransposeTest2() {
+        Matrix m = bigTest.transpose();
+        assertEquals(bigTest.cols, m.rows);
+        assertEquals(bigTest.rows, m.cols);
+        for (int i = 0; i < bigTest.rows; i++) {
+            for (int j = 0; j < bigTest.cols; j++) {
+                assertEquals(bigTest.data[i][j], m.data[j][i], eps);
+            }
+        }
+    }
+    
+    @Test
+    public void transposeOfATransposeReturnsOriginal(){
+        Matrix m = bigTest.transpose().transpose();
+        assertMatrixEqual(bigTest, m);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void determinantFunctionThrowsIfMatrixNotSquare() {
-        smallTest.det();
+        bigTest.det();
     }
 
     @Test
