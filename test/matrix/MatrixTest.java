@@ -234,28 +234,6 @@ public class MatrixTest {
         }
     }
 
-    @Test
-    public void matrixConstantAdditionTest1() {
-        double k = 3.45;
-        Matrix m = smallTest.add(k);
-        for (int i = 0; i < m.rows; i++) {
-            for (int j = 0; j < m.cols; j++) {
-                assertEquals(k + smallTest.data[i][j], m.data[i][j], eps);
-            }
-        }
-    }
-
-    @Test
-    public void matrixConstantAdditionTest2() {
-        double k = 3.45;
-        Matrix m = bigTest.add(k);
-        for (int i = 0; i < m.rows; i++) {
-            for (int j = 0; j < m.cols; j++) {
-                assertEquals(k + bigTest.data[i][j], m.data[i][j], eps);
-            }
-        }
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void matrixAdditionWithDifferentSizedMatricesThrows() {
         smallTest.add(bigTest);
