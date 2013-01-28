@@ -4,7 +4,7 @@
  */
 package matrix;
 
-import java.math.BigInteger;
+import java.util.Random;
 
 /**
  * Class that represents a matrix.
@@ -130,6 +130,50 @@ public class Matrix {
      */
     public static Matrix eye(int n) {
         return eye(n, n);
+    }
+
+    public static Matrix rand(int rows, int cols) {
+        Random rand = new Random();
+        Matrix m = new Matrix(rows, cols);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                m.data[i][j] = rand.nextDouble();
+            }
+        }
+        return m;
+    }
+
+    public static Matrix rand(int n) {
+        return rand(n, n);
+    }
+
+    private static Matrix randi(int imin, int imax, int rows, int cols, Random rand) {
+        if (imin > imax) {
+            throw new IllegalArgumentException("Should be imin <= imax!");
+        }
+        Matrix m = new Matrix(rows, cols);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                m.data[i][j] = rand.nextInt(imax - imin + 1) + imin;
+            }
+        }
+        return m;
+    }
+
+    protected static Matrix randi(int imin, int imax, int rows, int cols, long seed) {
+        return randi(imin, imax, rows, cols, new Random(seed));
+    }
+
+    public static Matrix randi(int imin, int imax, int rows, int cols) {
+        return randi(imin, imax, rows, cols, new Random());
+    }
+
+    public static Matrix randi(int imax, int rows, int cols) {
+        return randi(0, imax, rows, cols);
+    }
+
+    public static Matrix randi(int imax, int n) {
+        return randi(imax, n, n);
     }
 
     /**

@@ -19,6 +19,7 @@ import static org.junit.Assert.*;
 public class MatrixTest {
 
     private static final double eps = 10e-12;
+    private static final double epsStrassen = 10e-8;
     private Random rand;
     private final Matrix smallTest, bigTest;
 
@@ -51,7 +52,7 @@ public class MatrixTest {
     private Matrix createBigTestMatrix() {
         return createTestMatrix(11, 13);
     }
-    
+
     private Matrix createTestMatrix(int n) {
         return createTestMatrix(n, n);
     }
@@ -73,6 +74,17 @@ public class MatrixTest {
         for (int i = 0; i < expected.rows; i++) {
             for (int j = 0; j < expected.cols; j++) {
                 assertEquals(expected.data[i][j], result.data[i][j], eps);
+            }
+        }
+    }
+
+    private void assertMatrixEqual(Matrix expected, Matrix result, double epsilon) {
+        assertEquals(result.rows, expected.rows);
+        assertEquals(result.cols, expected.cols);
+
+        for (int i = 0; i < expected.rows; i++) {
+            for (int j = 0; j < expected.cols; j++) {
+                assertEquals(expected.data[i][j], result.data[i][j], epsilon);
             }
         }
     }
@@ -363,7 +375,7 @@ public class MatrixTest {
         Matrix naive = smallTest.mulNaive(test);
         Matrix strassen = smallTest.mulStrassen(test);
 
-        assertMatrixEqual(naive, strassen);
+        assertMatrixEqual(naive, strassen, epsStrassen);
     }
 
     @Test
@@ -373,7 +385,7 @@ public class MatrixTest {
         Matrix naive = bigTest.mulNaive(test);
         Matrix strassen = bigTest.mulStrassen(test);
 
-        assertMatrixEqual(naive, strassen);
+        assertMatrixEqual(naive, strassen, epsStrassen);
     }
 
     @Test
@@ -384,7 +396,7 @@ public class MatrixTest {
         Matrix naive = m1.mulNaive(m2);
         Matrix strassen = m1.mulStrassen(m2);
 
-        assertMatrixEqual(naive, strassen);
+        assertMatrixEqual(naive, strassen, epsStrassen);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -434,9 +446,9 @@ public class MatrixTest {
 
         assertMatrixEqual(expected, result);
     }
-    
+
     @Test
-    public void matrixToPowerZeroIsIdentity(){
+    public void matrixToPowerZeroIsIdentity() {
         int n = 33;
         Matrix m = createTestMatrix(n);
         Matrix result = m.pow(0);
@@ -466,9 +478,9 @@ public class MatrixTest {
             }
         }
     }
-    
+
     @Test
-    public void transposeOfATransposeReturnsOriginal(){
+    public void transposeOfATransposeReturnsOriginal() {
         Matrix m = bigTest.transpose().transpose();
         assertMatrixEqual(bigTest, m);
     }
