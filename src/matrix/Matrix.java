@@ -54,6 +54,13 @@ public class Matrix {
         cols = data[0].length;
     }
 
+    /**
+     * Checks if matrix is valid, is a sense that it has as many elements in
+     * each row. Returns true if it is, otherwise false.
+     *
+     * @param matrix Matrix to be checked.
+     * @return True if matrix is valid, otherwise false.
+     */
     private boolean validMatrix(double[][] matrix) {
         for (int i = 0; i < matrix.length - 1; i++) {
             if (matrix[i].length != matrix[i + 1].length) {
@@ -63,6 +70,13 @@ public class Matrix {
         return true;
     }
 
+    /**
+     * Creates a copy of the matrix, by declaring a new one and copying all the
+     * values to it.
+     *
+     * @param matrix Matrix to copied.
+     * @return A true copy of the input matrix.
+     */
     private double[][] copyOfMatrix(double[][] matrix) {
         double[][] newMatrix = new double[matrix.length][matrix[0].length];
         for (int i = 0; i < matrix.length; i++) {
@@ -132,6 +146,13 @@ public class Matrix {
         return eye(n, n);
     }
 
+    /**
+     * Creates a rows x cols matrix with random double values between 0 and 1.
+     *
+     * @param rows Numer of rows in the matrix.
+     * @param cols Number of columns in the matrix.
+     * @return A rows x cols matrix with random double values between 0 and 1.
+     */
     public static Matrix rand(int rows, int cols) {
         Random rand = new Random();
         Matrix m = new Matrix(rows, cols);
@@ -143,10 +164,30 @@ public class Matrix {
         return m;
     }
 
+    /**
+     * Creates an n x n matrix with random double values between 0 and 1.
+     *
+     * @param n Numer of rows and columns in the matrix.
+     * @return An n x n matrix with random double values between 0 and 1.
+     */
     public static Matrix rand(int n) {
         return rand(n, n);
     }
 
+    /**
+     * Creates a rows x cols matrix with random integer values from the interval
+     * [imin, imax]. The method also takes a Random-instance as a parameter,
+     * which is to be used to generate the values in the matrix.
+     *
+     * @param imin Lower bound for the values.
+     * @param imax Upper bound for the values.
+     * @param rows Number of rows in the matrix.
+     * @param cols Number of columns in the matrix.
+     * @param rand Random number generator to be used.
+     * @return A rows x cols matrix with random integer values from the interval
+     * [imin, imax].
+     * @throws IllegalArgumentException, if imin &gt imax.
+     */
     private static Matrix randi(int imin, int imax, int rows, int cols, Random rand) {
         if (imin > imax) {
             throw new IllegalArgumentException("Should be imin <= imax!");
@@ -160,18 +201,68 @@ public class Matrix {
         return m;
     }
 
+    /**
+     * Creates a rows x cols matrix with random integer values from the interval
+     * [imin, imax], using 'seed' to seed the random numbers. Giving the same
+     * seed generates the same random numbers for the matrix. If the method is
+     * wanted to be seeded automatically, use {@link #randi(int, int, int, int)
+     * } instead.
+     *
+     * @param imin Lower bound for the values.
+     * @param imax Upper bound for the values.
+     * @param rows Number of rows in the matrix.
+     * @param cols Number of columns in the matrix.
+     * @param seed Seed for the random number generator.
+     * @return A rows x cols matrix with random integer values from the interval
+     * [imin, imax].
+     * @throws IllegalArgumentException, if imin &gt imax.
+     */
     protected static Matrix randi(int imin, int imax, int rows, int cols, long seed) {
         return randi(imin, imax, rows, cols, new Random(seed));
     }
 
+    /**
+     * Creates a rows x cols matrix with random integer values from the interval
+     * [imin, imax].
+     *
+     * @param imin Lower bound for the values.
+     * @param imax Upper bound for the values.
+     * @param rows Number of rows in the matrix.
+     * @param cols Number of columns in the matrix.
+     * @return A rows x cols matrix with random integer values from the interval
+     * [imin, imax].
+     * @throws IllegalArgumentException, if imin &gt imax.
+     */
     public static Matrix randi(int imin, int imax, int rows, int cols) {
         return randi(imin, imax, rows, cols, new Random());
     }
 
+    /**
+     * Creates a rows x cols matrix with random integer values from the interval
+     * [0, imax].
+     *
+     * @param imax Upper bound for the values.
+     * @param rows Number of rows in the matrix.
+     * @param cols Number of columns in the matrix.
+     * @return A rows x cols matrix with random integer values from the interval
+     * [0, imax].
+     * @throws IllegalArgumentException, if imax &lt 0.
+     */
     public static Matrix randi(int imax, int rows, int cols) {
         return randi(0, imax, rows, cols);
     }
 
+    /**
+     * Creates an n x n matrix with random integer values from the interval [0,
+     * imax].
+     *
+     * @param imax Upper bound for the values.
+     * @param rows Number of rows in the matrix.
+     * @param cols Number of columns in the matrix.
+     * @return An n x n matrix with random integer values from the interval [0,
+     * imax].
+     * @throws IllegalArgumentException, if imax &lt 0.
+     */
     public static Matrix randi(int imax, int n) {
         return randi(imax, n, n);
     }
@@ -198,6 +289,11 @@ public class Matrix {
         System.out.println();
     }
 
+    /**
+     * Checks if this matrix contains large or small values in its elements.
+     *
+     * @return True, if matrix contains large or small values, otherwise false.
+     */
     private boolean containsLargeOrSmallValues() {
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data[i].length; j++) {
@@ -324,8 +420,17 @@ public class Matrix {
     public Matrix mulStrassen(Matrix m) {
         return Operations.mulStrassen(this, m);
     }
-    
-    public Matrix mulStrassen(Matrix m, int threshold){
+
+    /**
+     * Uses Strassen's algorithm to multiply this matrix with the matrix m,
+     * until the recursion has reached size threshold, and naive multiplication
+     * from there on.
+     *
+     * @param m Matrix to be multiplied with.
+     * @param threshold Staring size for naive multiplication.
+     * @return The resulting matrix of the operation (this * m).
+     */
+    public Matrix mulStrassen(Matrix m, int threshold) {
         return Operations.mulStrassen(this, m, threshold);
     }
 
