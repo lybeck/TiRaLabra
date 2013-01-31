@@ -130,6 +130,7 @@ public class StrassenComparison {
         String input;
         while (true) {
             System.out.println("Do you want to run another comparison? (Y/N)");
+            System.out.print(">> ");
             input = scanner.nextLine();
             if (input.equalsIgnoreCase("Y")) {
                 return true;
