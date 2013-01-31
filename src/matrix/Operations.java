@@ -89,6 +89,10 @@ class Operations {
         return Strassen.mulStrassen(m1, m2);
     }
 
+    static Matrix mulStrassen(Matrix m1, Matrix m2, int threshold) {
+        return Strassen.mulStrassen(m1, m2);
+    }
+
     static Matrix pow(Matrix m, int e) {
         if (e < 0) {
             throw new IllegalArgumentException("Power of matrix must be a positive integer!");

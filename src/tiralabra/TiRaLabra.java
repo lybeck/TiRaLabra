@@ -17,6 +17,6 @@ public class TiRaLabra {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        new UserInterface().run();
+        new TaskSelector().run();
     }
 }

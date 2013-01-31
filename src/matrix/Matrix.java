@@ -324,6 +324,10 @@ public class Matrix {
     public Matrix mulStrassen(Matrix m) {
         return Operations.mulStrassen(this, m);
     }
+    
+    public Matrix mulStrassen(Matrix m, int threshold){
+        return Operations.mulStrassen(this, m, threshold);
+    }
 
     /**
      * Raises the matrix to the power e.

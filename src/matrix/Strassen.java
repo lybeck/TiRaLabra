@@ -13,11 +13,19 @@ package matrix;
 class Strassen {
 
     static Matrix mulStrassen(Matrix m1, Matrix m2) {
+        return mulStrassen(m1, m2, 1);
+    }
+
+    static Matrix mulStrassen(Matrix m1, Matrix m2, int threshold) {
+        if (threshold < 1) {
+            throw new IllegalArgumentException("Threshold in Strassen's algorthm must be a positive integer!");
+        }
         Operations.checkMultiplicationSizes(m1, m2);
         int max = Math.max(Math.max(m1.rows, m1.cols), Math.max(m2.rows, m2.cols));
         int newSize = nextPowerOfTwoFrom(max);
-        double[][] result = strassen(expand(m1, newSize), expand(m2, newSize), newSize, 1);
+        double[][] result = strassen(expand(m1, newSize), expand(m2, newSize), newSize, threshold);
         return new Matrix(shrink(result, m1.rows, m2.cols));
+
     }
 
     /**
@@ -102,7 +110,7 @@ class Strassen {
      */
     private static double[][] strassen(double[][] a, double[][] b, int size, int threshold) {
         if (size <= threshold) {
-            return Operations.mulNaive(new Matrix(a), new Matrix(b)).data;
+            return Operations.mulNaive(new Matrix(a), new Matrix(b)).getDataCopy();
         }
 
         int newSize = size / 2;
@@ -190,6 +198,7 @@ class Strassen {
      */
     private static double[][] createMatrixFromBlocks(double[][] c11, double[][] c12,
             double[][] c21, double[][] c22, int n) {
+        
         double[][] c = new double[2 * n][2 * n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
