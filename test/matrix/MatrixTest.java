@@ -492,14 +492,41 @@ public class MatrixTest {
 
     @Test
     public void determinantTest1() {
+        double[][] a = {
+            {0, 2, 3},
+            {0, 1, 1},
+            {0, 2, 5}};
+        Matrix test = new Matrix(a);
+        assertEquals(0, test.det(), eps);
     }
 
     @Test
     public void determinantTest2() {
+        double[][] a = {
+            {0, 2, 3},
+            {2, 1, 1},
+            {5, 2, 5}};
+        Matrix test = new Matrix(a);
+        assertEquals(-13, test.det(), eps);
     }
 
     @Test
     public void determinantTest3() {
+        double[][] a = {
+            {0, 1},
+            {-1, 0}};
+        Matrix test = new Matrix(a);
+        assertEquals(1, test.det(), eps);
+    }
+
+    @Test
+    public void determinantTest4() {
+        double[][] a = {
+            {1, 2, 3},
+            {3, 2, 1},
+            {2, 1, 3}};
+        Matrix test = new Matrix(a);
+        assertEquals(-12, test.det(), eps);
     }
 
     @Test
@@ -508,5 +535,86 @@ public class MatrixTest {
 
     @Test
     public void inverseTest2() {
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void luDecompositionThrowsIfMatrixNotSquare() {
+        bigTest.decomposeLU();
+    }
+
+    @Test
+    public void luDecompositionReturnsTriangularMatrix1() {
+        LU lu = Matrix.randi(-10, 10, 10, 10, 42).decomposeLU();
+        checkMatrixUpperTriangular(lu.getU());
+    }
+
+    @Test
+    public void luDecompositionReturnsTriangularMatrix2() {
+        LU lu = Matrix.rand(15, 15, 42).decomposeLU();
+        checkMatrixUpperTriangular(lu.getU());
+    }
+
+    private void checkMatrixUpperTriangular(Matrix m) {
+        for (int i = 0; i < m.rows; i++) {
+            for (int j = 0; j < i && j < m.cols; j++) {
+                assertEquals(0, m.data[i][j], eps);
+            }
+        }
+    }
+
+    @Test
+    public void checkThatResultOfLUDecompositionIsValid1() {
+        Matrix test = Matrix.rand(15, 15, 42);
+        LU lu = test.decomposeLU();
+        assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
+    }
+
+    @Test
+    public void checkThatResultOfLUDecompositionIsValid2() {
+        Matrix test = Matrix.randi(-100, 100, 30, 30, 42);
+        LU lu = test.decomposeLU();
+        assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
+    }
+
+    @Test
+    public void checkThatResultOfLUDecompositionIsValid3() {
+        double[][] a = {
+            {0, 2, 3},
+            {2, 1, 1},
+            {5, 2, 5}};
+        Matrix test = new Matrix(a);
+        LU lu = test.decomposeLU();
+        
+        System.out.println("l = ");
+        lu.getPermutatedL().print();
+        System.out.println("L = ");
+        lu.getL().print();
+        System.out.println("u = ");
+        lu.getU().print();
+        System.out.println("P = ");
+        lu.getP().print();
+        
+        assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
+    }
+
+    @Test
+    public void checkThatResultOfLUDecompositionIsValid4() {
+        double[][] a = {
+            {0, 2},
+            {2, 1}};
+        Matrix test = new Matrix(a);
+        LU lu = test.decomposeLU();
+        assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
+    }
+
+    @Test
+    public void checkThatResultOfLUDecompositionIsValid5() {
+        double[][] a = {
+            {0, 2, 3},
+            {0, 1, 1},
+            {0, 2, 5}};
+        Matrix test = new Matrix(a);
+        LU lu = test.decomposeLU();
+        assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
     }
 }

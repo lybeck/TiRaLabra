@@ -147,14 +147,15 @@ public class Matrix {
     }
 
     /**
-     * Creates a rows x cols matrix with random double values between 0 and 1.
+     * Creates a rows x cols matrix with random double values between 0 and 1,
+     * using the specific random number generator.
      *
      * @param rows Numer of rows in the matrix.
      * @param cols Number of columns in the matrix.
+     * @param rand Random number generator to be used.
      * @return A rows x cols matrix with random double values between 0 and 1.
      */
-    public static Matrix rand(int rows, int cols) {
-        Random rand = new Random();
+    private static Matrix rand(int rows, int cols, Random rand) {
         Matrix m = new Matrix(rows, cols);
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -162,6 +163,30 @@ public class Matrix {
             }
         }
         return m;
+    }
+
+    /**
+     * Creates a rows x cols matrix with random double values between 0 and 1.
+     *
+     * @param rows Numer of rows in the matrix.
+     * @param cols Number of columns in the matrix.
+     * @return A rows x cols matrix with random double values between 0 and 1.
+     */
+    static Matrix rand(int rows, int cols, long seed) {
+        return rand(rows, cols, new Random(seed));
+    }
+
+    /**
+     * Creates a rows x cols matrix with random double values between 0 and 1,
+     * using the specified seed to seed the random number generator.
+     *
+     * @param rows Numer of rows in the matrix.
+     * @param cols Number of columns in the matrix.
+     * @param seed Seed for the random number generator.
+     * @return A rows x cols matrix with random double values between 0 and 1.
+     */
+    public static Matrix rand(int rows, int cols) {
+        return rand(rows, cols, new Random());
     }
 
     /**
@@ -217,7 +242,7 @@ public class Matrix {
      * [imin, imax].
      * @throws IllegalArgumentException, if imin &gt imax.
      */
-    protected static Matrix randi(int imin, int imax, int rows, int cols, long seed) {
+    static Matrix randi(int imin, int imax, int rows, int cols, long seed) {
         return randi(imin, imax, rows, cols, new Random(seed));
     }
 
@@ -469,5 +494,16 @@ public class Matrix {
      */
     public Matrix inv() {
         return Operations.inv(this);
+    }
+
+    /**
+     * Decomposes the matrix this into components P, L and U satisfying P*this =
+     * L*U, where L is a lower diagonal matrix, U is an upper triangular matrix
+     * and P is a permutation matrix.
+     *
+     * @return The LU-decomposition of this matrix.
+     */
+    public LU decomposeLU() {
+        return new LU(this);
     }
 }

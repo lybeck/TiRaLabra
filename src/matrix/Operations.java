@@ -146,7 +146,7 @@ class Operations {
 
     static double det(Matrix m) {
         checkIfSquare(m);
-        throw new UnsupportedOperationException("Not yet implemented");
+        return new LU(m).getDeterminant();
     }
 
     static Matrix inv(Matrix m) {
