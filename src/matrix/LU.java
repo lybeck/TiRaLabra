@@ -114,17 +114,32 @@ public class LU {
         permL = p.transpose().mul(l);
     }
 
-    private void addMulRow(Matrix m, int i, int j, double l_ji) {
+    /**
+     * Adds the row i multiplied with c into the row j in matrix m.
+     *
+     * @param m Matrix to be used.
+     * @param i Row to be added.
+     * @param j Row to be added to.
+     * @param c Constant the added row should be multiplied with before adding.
+     */
+    private void addMulRow(Matrix m, int i, int j, double c) {
         for (int k = 0; k < m.cols; k++) {
-            m.data[j][k] += m.data[i][k] * l_ji;
+            m.data[j][k] += m.data[i][k] * c;
         }
     }
 
-    private boolean swapAwayZeroElement(int row) {
-        for (int j = row + 1; j < u.rows; j++) {
-            if (u.data[j][row] != 0) {
-                swapRows(u, row, j);
-                swapRows(p, row, j);
+    /**
+     * Swaps away the row i to a lower row in the matrix, if possible without
+     * getting a 0 element to index (i,i).
+     *
+     * @param i Row to be swapped.
+     * @return True, if the swap was possible, otherwise false.
+     */
+    private boolean swapAwayZeroElement(int i) {
+        for (int j = i + 1; j < u.rows; j++) {
+            if (u.data[j][i] != 0) {
+                swapRows(u, i, j);
+                swapRows(p, i, j);
                 ++elementaryPermutations;
                 return true;
             }
@@ -132,6 +147,13 @@ public class LU {
         return false;
     }
 
+    /**
+     * Swaps rows i and j in matrix m.
+     *
+     * @param m Matrix, whose rows should be swapped.
+     * @param i First row to be swapped.
+     * @param j Second row to be swapped.
+     */
     private void swapRows(Matrix m, int i, int j) {
         double[] temp = new double[m.cols];
         System.arraycopy(m.data[i], 0, temp, 0, m.cols);
@@ -139,6 +161,13 @@ public class LU {
         System.arraycopy(temp, 0, m.data[j], 0, m.cols);
     }
 
+    /**
+     * Calculates the determinant of this LU-decompostion. The determinant is
+     * calculated by multiplying the determinant of the upper triangular matrix
+     * (the product of the diagonal elements) with the determinant of
+     * permutation matrix (being always 1 or -1). The lower triangular matrix
+     * has always determinant 1, and needs not be taken into account.
+     */
     private void calculateDeterminant() {
         determinant = 1;
         for (int i = 0; i < u.rows; i++) {

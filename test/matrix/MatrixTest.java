@@ -584,16 +584,6 @@ public class MatrixTest {
             {5, 2, 5}};
         Matrix test = new Matrix(a);
         LU lu = test.decomposeLU();
-        
-        System.out.println("l = ");
-        lu.getPermutatedL().print();
-        System.out.println("L = ");
-        lu.getL().print();
-        System.out.println("u = ");
-        lu.getU().print();
-        System.out.println("P = ");
-        lu.getP().print();
-        
         assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
     }
 
