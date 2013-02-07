@@ -90,7 +90,7 @@ class Operations {
     }
 
     static Matrix mulStrassen(Matrix m1, Matrix m2, int threshold) {
-        return Strassen.mulStrassen(m1, m2);
+        return Strassen.mulStrassen(m1, m2, threshold);
     }
 
     static Matrix pow(Matrix m, int e) {

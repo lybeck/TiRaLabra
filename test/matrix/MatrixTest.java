@@ -529,14 +529,6 @@ public class MatrixTest {
         assertEquals(-12, test.det(), eps);
     }
 
-    @Test
-    public void inverseTest1() {
-    }
-
-    @Test
-    public void inverseTest2() {
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void luDecompositionThrowsIfMatrixNotSquare() {
         bigTest.decomposeLU();
@@ -606,5 +598,13 @@ public class MatrixTest {
         Matrix test = new Matrix(a);
         LU lu = test.decomposeLU();
         assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
+    }
+
+    @Test
+    public void inverseTest1() {
+    }
+
+    @Test
+    public void inverseTest2() {
     }
 }

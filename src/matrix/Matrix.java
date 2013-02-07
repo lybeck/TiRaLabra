@@ -305,6 +305,7 @@ public class Matrix {
         } else {
             formatString = "%14.4f  ";
         }
+        System.out.println();
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data[i].length; j++) {
                 System.out.format(formatString, at(i, j));

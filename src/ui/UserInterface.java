@@ -180,17 +180,8 @@ public class UserInterface {
             System.out.println("Unrecognized command!");
             return null;
         }
-
-        split[0] = split[0].toLowerCase().trim();
-        split[1] = split[1].toLowerCase().trim();
-
-        Matrix result = null;
-
-        switch (split[0]) {
-            case "parse":
-                result = parseMatrix(split[1]);
-                break;
-        }
+        
+        Matrix result = processCommand(split);
 
         if (print && result != null) {
             result.print();
@@ -198,44 +189,14 @@ public class UserInterface {
         return result;
     }
 
-    private Matrix parseMatrix(String string) {
-        if (!string.startsWith("[") || !string.endsWith("]")) {
-            System.out.println("Unparsable string!");
-            return null;
+    private Matrix processCommand(String[] split) {
+        split[0] = split[0].toLowerCase().trim();
+        split[1] = split[1].toLowerCase().trim();
+        switch (split[0]) {
+            case "parse":
+                return new MatrixParser().parse(split[1]);
         }
-        string = string.substring(1, string.length() - 1).trim();
-        String[] split = string.split(";");
-        int rows = split.length;
-        int cols = countColumns(split);
-        if (cols == -1) {
-            System.out.println("Unparsable string!");
-            return null;
-        }
-        double[][] m = new double[rows][cols];
-        try {
-            for (int i = 0; i < rows; i++) {
-                split[i] = split[i].replaceAll(",", " ");
-                Scanner row = new Scanner(split[i]);
-                for (int j = 0; j < cols; j++) {
-                    m[i][j] = row.nextDouble();
-                }
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Unparsable string!");
-            return null;
-        }
-        return new Matrix(m);
-    }
-
-    private int countColumns(String[] split) {
-        String regex = ",|\\s";
-        int cols = split[0].split(regex).length;
-        for (int i = 0; i < split.length; i++) {
-            if (cols != split[i].split(regex).length) {
-                return -1;
-            }
-        }
-        return cols;
+        return null;
     }
 
     private void printSplit(String[] split) {
@@ -245,9 +206,5 @@ public class UserInterface {
             System.out.println(split[i]);
         }
         System.out.println();
-    }
-
-    public static void main(String[] args) {
-        new UserInterface().performVariableCommand("parse([0 2 3;2 1 1;5 2 5])");
     }
 }

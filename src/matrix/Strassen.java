@@ -198,7 +198,7 @@ class Strassen {
      */
     private static double[][] createMatrixFromBlocks(double[][] c11, double[][] c12,
             double[][] c21, double[][] c22, int n) {
-        
+
         double[][] c = new double[2 * n][2 * n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -211,6 +211,13 @@ class Strassen {
         return c;
     }
 
+    /**
+     * Performs the operation a + b.
+     *
+     * @param a Matrix to be added to.
+     * @param b Matrix to be added.
+     * @return The result of a + b.
+     */
     private static double[][] add(double[][] a, double[][] b) {
         double[][] result = new double[a.length][a[0].length];
         for (int i = 0; i < result.length; i++) {
@@ -221,6 +228,13 @@ class Strassen {
         return result;
     }
 
+    /**
+     * Performs the operation a - b.
+     *
+     * @param a Matrix to be subtracted from.
+     * @param b Matrix to be subtracted.
+     * @return The result of a - b.
+     */
     private static double[][] sub(double[][] a, double[][] b) {
         double[][] result = new double[a.length][a[0].length];
         for (int i = 0; i < result.length; i++) {
