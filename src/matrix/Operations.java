@@ -150,6 +150,7 @@ class Operations {
     }
 
     static Matrix inv(Matrix m) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        checkIfSquare(m);
+        return LUSolver.calculateInverse(m);
     }
 }

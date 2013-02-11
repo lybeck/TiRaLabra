@@ -15,6 +15,7 @@ public class LU {
     private Matrix l, u, p, permL;
     private int elementaryPermutations;
     private double determinant;
+    private int n;
 
     /**
      * Generates an LU-decomposition of the input matrix.
@@ -67,6 +68,15 @@ public class LU {
     }
 
     /**
+     * Returns the side of the decomposed (n x n) matrix.
+     *
+     * @return The side of the matrices.
+     */
+    public int getN() {
+        return n;
+    }
+
+    /**
      * Returns the determinant of the matrix represented by the
      * LU-decomposition. The determinant is calculated by multiplying the
      * determinant of the upper triangular matrix (the product of the diagonal
@@ -91,6 +101,8 @@ public class LU {
         if (m.rows != m.cols) {
             throw new IllegalArgumentException("Matrix must be square!");
         }
+
+        n = m.rows;
 
         elementaryPermutations = 0;
 

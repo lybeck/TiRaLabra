@@ -600,11 +600,62 @@ public class MatrixTest {
         assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void inverseThrowsIfMatrixNotSquare() {
+        bigTest.inv();
+    }
+
+    @Test
+    public void inverseReturnsNullIfDeterminantIsZero() {
+        double[][] a = {
+            {0, 2, 3},
+            {0, 1, 1},
+            {0, 2, 5}};
+        Matrix test = new Matrix(a);
+        if (test.inv() != null) {
+            fail();
+        }
+    }
+
     @Test
     public void inverseTest1() {
+        double[][] a = {
+            {4, 3},
+            {3, 2}};
+        double[][] e = {
+            {-2, 3},
+            {3, -4}};
+        Matrix test = new Matrix(a);
+        Matrix expected = new Matrix(e);
+        assertMatrixEqual(expected, test.inv());
     }
 
     @Test
     public void inverseTest2() {
+        double[][] a = {
+            {1, 2, 3},
+            {0, 4, 5},
+            {1, 0, 6}};
+        double[][] e = {
+            {12.0 / 11, -6.0 / 11, -1.0 / 11},
+            {5.0 / 22, 3.0 / 22, -5.0 / 22},
+            {-2.0 / 11, 1.0 / 11, 2.0 / 11}};
+        Matrix test = new Matrix(a);
+        Matrix expected = new Matrix(e);
+        assertMatrixEqual(expected, test.inv());
+    }
+
+    @Test
+    public void inverseTest3() {
+        int n = 15;
+        Matrix test = Matrix.rand(n, n, 42);
+        assertMatrixEqual(Matrix.eye(n), test.mulNaive(test.inv()));
+    }
+
+    @Test
+    public void inverseTest4() {
+        int n = 23;
+        Matrix test = Matrix.randi(-1000, 1000, n, n, 42);
+        assertMatrixEqual(Matrix.eye(n), test.mulNaive(test.inv()));
     }
 }
