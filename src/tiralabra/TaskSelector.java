@@ -45,7 +45,7 @@ class TaskSelector {
 
             switch (input) {
                 case "1":
-                    new UserInterface().run();
+                    UserInterface.getInstance().run();
                     return true;
                 case "2":
                     new StrassenComparison().run();
@@ -53,7 +53,7 @@ class TaskSelector {
                 case "0":
                     return false;
                 default:
-                    System.out.println("Unrecognised command: '" + input + "'");
+                    System.err.println("Unrecognised command: '" + input + "'");
             }
 
         }

@@ -19,9 +19,22 @@ public class UserInterface {
     private Scanner scanner;
     private HashMap<String, Matrix> variables;
 
-    public UserInterface() {
+    private UserInterface() {
         scanner = new Scanner(System.in);
         variables = new HashMap<>();
+    }
+
+    public static UserInterface getInstance() {
+        return UserInterfaceHolder.INSTANCE;
+    }
+
+    private static class UserInterfaceHolder {
+
+        private static final UserInterface INSTANCE = new UserInterface();
+    }
+
+    HashMap<String, Matrix> getVariables() {
+        return variables;
     }
 
     public void run() {
@@ -53,9 +66,6 @@ public class UserInterface {
             case "help":
                 printHelp();
                 break;
-            case "new":
-                initNewVariable();
-                break;
             case "vars":
                 printVariableNames();
                 break;
@@ -71,26 +81,6 @@ public class UserInterface {
 
     private boolean isExitCommand(String command) {
         return command.equals("exit") || command.equals("quit");
-    }
-
-    private void initNewVariable() {
-        String varName;
-        while (true) {
-            System.out.println("Input name for new variable:");
-            System.out.print(">> ");
-            varName = scanner.nextLine();
-            if (varName.length() < 1) {
-                System.out.println("Did not initialize new variable...");
-            } else if (variables.containsKey(varName)) {
-                System.out.println("Variable name already in use!");
-            } else if (!isValidVariableName(varName)) {
-                System.out.println("Not a valid variable name!");
-            } else {
-                variables.put(varName, null);
-                System.out.println("Initialized new variable with name \"" + varName + "\"");
-                break;
-            }
-        }
     }
 
     private boolean isValidVariableName(String varName) {
@@ -129,82 +119,60 @@ public class UserInterface {
         if (command.contains("=")) {
             String[] split = command.split("=");
             if (split.length > 2) {
-                System.out.println("Too many '=' in command");
-                System.out.println("Command terminated.");
+                System.err.println("Too many '=' in command!");
+                return;
             }
             varName = split[0].trim();
-            if (!variables.containsKey(varName)) {
-                System.out.println("No variable named '" + varName + "' found! Check variables with command 'vars'.");
-                System.out.println("Command terminanted.");
+            if (!isValidVariableName(varName)) {
+                System.err.println("'" + varName + "' not a valid variable name!");
                 return;
             }
             command = split[1];
         }
+        
+        boolean print = !command.endsWith(";");
+        if (!print) {
+            command = command.substring(0, command.length() - 1);
+        }
+        
         result = calculateCommand(command);
         if (varName != null && result != null) {
             variables.put(varName, result);
+        }
+
+        if (print && result != null) {
+            result.print();
         }
     }
 
     private Matrix calculateCommand(String command) {
         if (command.length() < 1) {
-            System.out.println("Unrecoginzed command!");
+            System.err.println("Unrecoginzed command!");
             return null;
         }
-        boolean print = !command.endsWith(";");
-        if (!print) {
-            command = command.substring(0, command.length() - 1).trim();
-        }
+
+        command = command.trim();
 
         if (variables.containsKey(command)) {
-            Matrix var = variables.get(command);
-            if (print) {
-                if (var != null) {
-                    var.print();
-                } else {
-                    System.out.println("(null)");
-                }
-            }
-            return var;
+            return new Matrix(variables.get(command));
         }
 
         if (!command.endsWith(")")) {
-            System.out.println("Unrecognized command!");
+            System.err.println("Unrecognized command!");
             return null;
         }
-        command = command.substring(0, command.length() - 1);
 
         String[] split = command.split("\\(");
+        int ind = split.length - 1;
+        split[ind] = split[ind].substring(0, split[ind].length() - 1);
 
         if (split.length != 2) {
-            System.out.println("Unrecognized command!");
+            System.err.println("Unrecognized command!");
             return null;
         }
+
+        Matrix result = new CommandProcesser().processCommand(split);
         
-        Matrix result = processCommand(split);
-
-        if (print && result != null) {
-            result.print();
-        }
         return result;
-    }
-
-    private Matrix processCommand(String[] split) {
-        split[0] = split[0].toLowerCase().trim();
-        split[1] = split[1].toLowerCase().trim();
-        switch (split[0]) {
-            case "parse":
-                return new MatrixParser().parse(split[1]);
-        }
-        return null;
-    }
-
-    private void printSplit(String[] split) {
-        System.out.println("Split:");
-        for (int i = 0; i < split.length; i++) {
-            System.out.println(i + ":");
-            System.out.println(split[i]);
-        }
-        System.out.println();
     }
 }
