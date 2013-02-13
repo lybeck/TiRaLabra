@@ -67,28 +67,6 @@ public class MatrixTest {
         return m;
     }
 
-    private void assertMatrixEqual(Matrix expected, Matrix result) {
-        assertEquals(result.rows, expected.rows);
-        assertEquals(result.cols, expected.cols);
-
-        for (int i = 0; i < expected.rows; i++) {
-            for (int j = 0; j < expected.cols; j++) {
-                assertEquals(expected.data[i][j], result.data[i][j], eps);
-            }
-        }
-    }
-
-    private void assertMatrixEqual(Matrix expected, Matrix result, double epsilon) {
-        assertEquals(result.rows, expected.rows);
-        assertEquals(result.cols, expected.cols);
-
-        for (int i = 0; i < expected.rows; i++) {
-            for (int j = 0; j < expected.cols; j++) {
-                assertEquals(expected.data[i][j], result.data[i][j], epsilon);
-            }
-        }
-    }
-
     @Test
     public void singleIntParameterConstructorWorks() {
         Matrix m = new Matrix(4);
@@ -312,7 +290,7 @@ public class MatrixTest {
         double[][] e = {{20, 26}, {47, 62}};
         Matrix expected = new Matrix(e);
 
-        assertMatrixEqual(expected, result);
+        TestUtils.assertMatrixEqual(expected, result);
     }
 
     @Test
@@ -327,7 +305,7 @@ public class MatrixTest {
         double[][] e = {{51, 68, 85}, {164, 224, 284}};
         Matrix expected = new Matrix(e);
 
-        assertMatrixEqual(expected, result);
+        TestUtils.assertMatrixEqual(expected, result);
     }
 
     @Test
@@ -360,7 +338,7 @@ public class MatrixTest {
 
         Matrix expected = new Matrix(e);
 
-        assertMatrixEqual(expected, result);
+        TestUtils.assertMatrixEqual(expected, result);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -375,7 +353,7 @@ public class MatrixTest {
         Matrix naive = smallTest.mulNaive(test);
         Matrix strassen = smallTest.mulStrassen(test);
 
-        assertMatrixEqual(naive, strassen, epsStrassen);
+        TestUtils.assertMatrixEqual(naive, strassen, epsStrassen);
     }
 
     @Test
@@ -385,7 +363,7 @@ public class MatrixTest {
         Matrix naive = bigTest.mulNaive(test);
         Matrix strassen = bigTest.mulStrassen(test);
 
-        assertMatrixEqual(naive, strassen, epsStrassen);
+        TestUtils.assertMatrixEqual(naive, strassen, epsStrassen);
     }
 
     @Test
@@ -396,7 +374,7 @@ public class MatrixTest {
         Matrix naive = m1.mulNaive(m2);
         Matrix strassen = m1.mulStrassen(m2);
 
-        assertMatrixEqual(naive, strassen, epsStrassen);
+        TestUtils.assertMatrixEqual(naive, strassen, epsStrassen);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -425,7 +403,7 @@ public class MatrixTest {
             {1656, 2034, 2412}};
         Matrix expected = new Matrix(e);
 
-        assertMatrixEqual(expected, result);
+        TestUtils.assertMatrixEqual(expected, result);
     }
 
     @Test
@@ -444,7 +422,7 @@ public class MatrixTest {
             {26561, 20741, 10061}};
         Matrix expected = new Matrix(e);
 
-        assertMatrixEqual(expected, result);
+        TestUtils.assertMatrixEqual(expected, result);
     }
 
     @Test
@@ -452,7 +430,7 @@ public class MatrixTest {
         int n = 33;
         Matrix m = createTestMatrix(n);
         Matrix result = m.pow(0);
-        assertMatrixEqual(Matrix.eye(n), result);
+        TestUtils.assertMatrixEqual(Matrix.eye(n), result);
     }
 
     @Test
@@ -482,7 +460,7 @@ public class MatrixTest {
     @Test
     public void transposeOfATransposeReturnsOriginal() {
         Matrix m = bigTest.transpose().transpose();
-        assertMatrixEqual(bigTest, m);
+        TestUtils.assertMatrixEqual(bigTest, m);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -531,18 +509,18 @@ public class MatrixTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void luDecompositionThrowsIfMatrixNotSquare() {
-        bigTest.decomposeLU();
+        bigTest.lu();
     }
 
     @Test
     public void luDecompositionReturnsTriangularMatrix1() {
-        LU lu = Matrix.randi(-10, 10, 10, 10, 42).decomposeLU();
+        LU lu = Matrix.randi(-10, 10, 10, 10, 42).lu();
         checkMatrixUpperTriangular(lu.getU());
     }
 
     @Test
     public void luDecompositionReturnsTriangularMatrix2() {
-        LU lu = Matrix.rand(15, 15, 42).decomposeLU();
+        LU lu = Matrix.rand(15, 15, 42).lu();
         checkMatrixUpperTriangular(lu.getU());
     }
 
@@ -557,15 +535,15 @@ public class MatrixTest {
     @Test
     public void checkThatResultOfLUDecompositionIsValid1() {
         Matrix test = Matrix.rand(15, 15, 42);
-        LU lu = test.decomposeLU();
-        assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
+        LU lu = test.lu();
+        TestUtils.assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
     }
 
     @Test
     public void checkThatResultOfLUDecompositionIsValid2() {
         Matrix test = Matrix.randi(-100, 100, 30, 30, 42);
-        LU lu = test.decomposeLU();
-        assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
+        LU lu = test.lu();
+        TestUtils.assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
     }
 
     @Test
@@ -575,8 +553,8 @@ public class MatrixTest {
             {2, 1, 1},
             {5, 2, 5}};
         Matrix test = new Matrix(a);
-        LU lu = test.decomposeLU();
-        assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
+        LU lu = test.lu();
+        TestUtils.assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
     }
 
     @Test
@@ -585,8 +563,8 @@ public class MatrixTest {
             {0, 2},
             {2, 1}};
         Matrix test = new Matrix(a);
-        LU lu = test.decomposeLU();
-        assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
+        LU lu = test.lu();
+        TestUtils.assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
     }
 
     @Test
@@ -596,8 +574,8 @@ public class MatrixTest {
             {0, 1, 1},
             {0, 2, 5}};
         Matrix test = new Matrix(a);
-        LU lu = test.decomposeLU();
-        assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
+        LU lu = test.lu();
+        TestUtils.assertMatrixEqual(test, lu.getPermutatedL().mulNaive(lu.getU()));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -627,7 +605,7 @@ public class MatrixTest {
             {3, -4}};
         Matrix test = new Matrix(a);
         Matrix expected = new Matrix(e);
-        assertMatrixEqual(expected, test.inv());
+        TestUtils.assertMatrixEqual(expected, test.inv());
     }
 
     @Test
@@ -642,20 +620,20 @@ public class MatrixTest {
             {-2.0 / 11, 1.0 / 11, 2.0 / 11}};
         Matrix test = new Matrix(a);
         Matrix expected = new Matrix(e);
-        assertMatrixEqual(expected, test.inv());
+        TestUtils.assertMatrixEqual(expected, test.inv());
     }
 
     @Test
     public void inverseTest3() {
         int n = 15;
         Matrix test = Matrix.rand(n, n, 42);
-        assertMatrixEqual(Matrix.eye(n), test.mulNaive(test.inv()));
+        TestUtils.assertMatrixEqual(Matrix.eye(n), test.mulNaive(test.inv()));
     }
 
     @Test
     public void inverseTest4() {
         int n = 23;
         Matrix test = Matrix.randi(-1000, 1000, n, n, 42);
-        assertMatrixEqual(Matrix.eye(n), test.mulNaive(test.inv()));
+        TestUtils.assertMatrixEqual(Matrix.eye(n), test.mulNaive(test.inv()));
     }
 }

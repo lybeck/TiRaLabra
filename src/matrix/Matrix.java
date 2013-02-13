@@ -9,6 +9,13 @@ import java.util.Random;
 /**
  * Class that represents a matrix.
  *
+ * <p>
+ *
+ * The matrix operations are included in this class for easy usage. If m is a
+ * Matrix instance, all operations can be accessed by calling
+ * m.<i>operation</i>(). The operations are implemented in the
+ * {@link Operations} class.
+ *
  * @author lasse
  */
 public class Matrix {
@@ -504,7 +511,7 @@ public class Matrix {
      *
      * @return The LU-decomposition of this matrix.
      */
-    public LU decomposeLU() {
-        return new LU(this);
+    public LU lu() {
+        return Operations.lu(this);
     }
 }

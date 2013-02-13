@@ -12,10 +12,30 @@ package matrix;
  */
 class Strassen {
 
+    /**
+     * Multiplies matrix m1 with matrix m2 using Strassen's algorithm for matrix
+     * multiplication.
+     *
+     * @param m1 Matrix on the left matrix in the multiplication.
+     * @param m2 Matrix on the right matrix in the multiplication.
+     * @return The matrix resulting from the operation m1 * m2.
+     * @throws IllegalArgumentException if sizes do not match.
+     */
     static Matrix mulStrassen(Matrix m1, Matrix m2) {
         return mulStrassen(m1, m2, 1);
     }
 
+    /**
+     * Multiplies matrix m1 with matrix m2 using Strassen's algorithm for matrix
+     * multiplication, changing to the naive multiplication when the size drops
+     * below the threshold.
+     *
+     * @param m1 Matrix on the left matrix in the multiplication.
+     * @param m2 Matrix on the right matrix in the multiplication.
+     * @param threshold Threshold size for chaning to the naive algorithm.
+     * @return The matrix resulting from the operation m1 * m2.
+     * @throws IllegalArgumentException if sizes do not match.
+     */
     static Matrix mulStrassen(Matrix m1, Matrix m2, int threshold) {
         if (threshold < 1) {
             throw new IllegalArgumentException("Threshold in Strassen's algorthm must be a positive integer!");
@@ -93,13 +113,20 @@ class Strassen {
     }
 
     /**
-     * Strassen's algorithm of matrix multiplication. <p> This method is used
-     * recursively until the threshold for the minimum size is reached, and then
-     * passed to the naive multiplication algorithm. If Strassen's algorithm is
-     * wanted to be used all the way the threshold should be set as 1. <br> The
-     * matrices passed to the method must have all sizes the same power-of-two.
-     * This is not checked by the method to ensure good performance, but may
-     * cause unexpected behaviour if not satisfied.
+     * Strassen's algorithm of matrix multiplication.
+     *
+     * <p>
+     *
+     * This method is used recursively until the threshold for the minimum size
+     * is reached, and then passed to the naive multiplication algorithm. If
+     * Strassen's algorithm is wanted to be used all the way the threshold
+     * should be set as 1.
+     *
+     * <br>
+     *
+     * The matrices passed to the method must have all sizes the same
+     * power-of-two. This is not checked by the method to ensure good
+     * performance, but may cause unexpected behaviour if not satisfied.
      *
      * @param a The left matrix in the multiplication.
      * @param b The right matrix in the multiplication.

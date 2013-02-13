@@ -20,11 +20,11 @@ class LUSolver {
      * @return The inverse matrix of m, if it exists, otherwise null.
      */
     static Matrix calculateInverse(Matrix m) {
-        LU lu = m.decomposeLU();
+        LU lu = m.lu();
         if (lu.getDeterminant() == 0) {
             return null;
         }
-        return solveMatrixEquation(m.decomposeLU(), Matrix.eye(m.cols));
+        return solveMatrixEquation(m.lu(), Matrix.eye(m.cols));
     }
 
     /**
@@ -132,11 +132,18 @@ class LUSolver {
         return columns;
     }
 
-    private static Matrix createMatrixFromColumns(Matrix[] xColumns) {
-        Matrix result = new Matrix(xColumns[0].rows, xColumns.length);
-        for (int i = 0; i < xColumns.length; i++) {
-            for (int j = 0; j < xColumns[0].rows; j++) {
-                result.data[j][i] = xColumns[i].data[j][0];
+    /**
+     * Creates a matrix from the input array, treating the matrices in the array
+     * as columnvectors.
+     *
+     * @param columns Array of columns vectors.
+     * @return Matrix constructed from columns vectors.
+     */
+    private static Matrix createMatrixFromColumns(Matrix[] columns) {
+        Matrix result = new Matrix(columns[0].rows, columns.length);
+        for (int i = 0; i < columns.length; i++) {
+            for (int j = 0; j < columns[0].rows; j++) {
+                result.data[j][i] = columns[i].data[j][0];
             }
         }
         return result;
