@@ -74,7 +74,7 @@ class OperationsParser {
     Matrix mul(String params) {
         String[] split = ParseUtils.getParameterSplit(params);
         if (split.length != 2) {
-            ParseUtils.wrongNumberOfParametersInFunction("sub");
+            ParseUtils.wrongNumberOfParametersInFunction("mul");
         }
         if (!variablesFound(split)) {
             return null;
@@ -88,7 +88,7 @@ class OperationsParser {
     Matrix mulN(String params) {
         String[] split = ParseUtils.getParameterSplit(params);
         if (split.length != 2) {
-            ParseUtils.wrongNumberOfParametersInFunction("sub");
+            ParseUtils.wrongNumberOfParametersInFunction("mulN");
         }
         if (!variablesFound(split)) {
             return null;
@@ -102,7 +102,7 @@ class OperationsParser {
     Matrix mulS(String params) {
         String[] split = ParseUtils.getParameterSplit(params);
         if (split.length != 2) {
-            ParseUtils.wrongNumberOfParametersInFunction("sub");
+            ParseUtils.wrongNumberOfParametersInFunction("mulS");
         }
         if (!variablesFound(split)) {
             return null;
