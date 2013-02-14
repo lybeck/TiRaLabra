@@ -1,0 +1,107 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2011.3.15)  14 FEB 2013 13:01
+entering extended mode
+**algotest.tex
+
+(C:\Users\Lasse\Documents\NetBeansProjects\TiRaLabra\documents\latex\algotest.t
+ex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman, ngerman, german-x-2009-06-19, ngerman-x-2009-06-19, french, loaded.
+("C:\Program Files (x86)\MiKTeX 2.8\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files (x86)\MiKTeX 2.8\tex\latex\base\size10.clo"
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files (x86)\MiKTeX 2.8\tex\latex\algorithms\algorithm.sty"
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+("C:\Program Files (x86)\MiKTeX 2.8\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count87
+\float@exts=\toks14
+\float@box=\box26
+\@float@everytoks=\toks15
+\@floatcapt=\box27
+)
+("C:\Program Files (x86)\MiKTeX 2.8\tex\latex\base\ifthen.sty"
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks16
+\c@algorithm=\count88
+)
+("C:\Program Files (x86)\MiKTeX 2.8\tex\latex\algorithmicx\algpseudocode.sty"
+Package: algpseudocode 
+
+("C:\Program Files (x86)\MiKTeX 2.8\tex\latex\algorithmicx\algorithmicx.sty"
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count89
+\c@ALG@rem=\count90
+\c@ALG@nested=\count91
+\ALG@tlm=\skip43
+\ALG@thistlm=\skip44
+\c@ALG@Lnr=\count92
+\c@ALG@blocknr=\count93
+\c@ALG@storecount=\count94
+\c@ALG@tmpcounter=\count95
+\ALG@tmplength=\skip45
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+)
+No file algotest.aux.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 12.
+[1
+
+{C:/ProgramData/MiKTeX/2.8/pdftex/config/pdftex.map}]
+(C:\Users\Lasse\Documents\NetBeansProjects\TiRaLabra\documents\latex\algotest.a
+ux) ) 
+Here is how much of TeX's memory you used:
+ 838 strings out of 495285
+ 11559 string characters out of 3179878
+ 60857 words of memory out of 3000000
+ 4103 multiletter control sequences out of 15000+200000
+ 4548 words of font info for 17 fonts, out of 3000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 27i,4n,17p,255b,280s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmbx10.p
+fb><C:/Program Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmcsc10.pf
+b><C:/Program Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+<C:/Program Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:
+/Program Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Pro
+gram Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program
+ Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on algotest.pdf (1 page, 73673 bytes).
+PDF statistics:
+ 34 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

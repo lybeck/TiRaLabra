@@ -154,7 +154,7 @@ public class UserInterface {
         command = command.trim();
 
         if (variables.containsKey(command)) {
-            return new Matrix(variables.get(command));
+            return variables.get(command);
         }
 
         if (!command.endsWith(")")) {
