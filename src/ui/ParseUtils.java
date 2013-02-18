@@ -4,6 +4,8 @@
  */
 package ui;
 
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Lasse
@@ -49,5 +51,16 @@ class ParseUtils {
             throw new NumberFormatException("'" + string + "' not a parsable number!");
         }
         return Double.parseDouble(split[0]) / Double.parseDouble(split[1]);
+    }
+
+    static boolean isDouble(String toParse) {
+        String number = "[-+]?[0-9]*.?[0-9]+([eE][-+]?[0-9]+)?";
+        String regex = number + "\\s*(/\\s*" + number + ")?";
+        return Pattern.matches(regex, toParse);
+    }
+
+    static boolean isNonNegativeInteger(String toParse) {
+        String regex = "[+]?[0-9]+([eE][+]?[0-9]+)?";
+        return Pattern.matches(regex, toParse);
     }
 }

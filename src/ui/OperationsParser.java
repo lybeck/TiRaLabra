@@ -29,17 +29,36 @@ class OperationsParser {
         return true;
     }
 
+    private boolean variableFound(String var) {
+        return variablesFound(new String[]{var});
+    }
+
     Matrix scale(String params) {
         String[] split = ParseUtils.getParameterSplit(params);
         if (split.length != 2) {
             ParseUtils.wrongNumberOfParametersInFunction("scale");
         }
-        if (!variablesFound(new String[]{split[0]})) {
+
+        Matrix m;
+        double k;
+        if (ParseUtils.isDouble(split[0]) && variables.containsKey(split[1])) {
+            m = variables.get(split[1]);
+            k = ParseUtils.parseDouble(split[0]);
+        } else if (ParseUtils.isDouble(split[1]) && variables.containsKey(split[0])) {
+            m = variables.get(split[0]);
+            k = ParseUtils.parseDouble(split[1]);
+        } else {
+            if (!ParseUtils.isDouble(split[0]) && !variables.containsKey(split[0])) {
+                System.err.println("Parameter 1 not a variable or number!");
+            } else if (!ParseUtils.isDouble(split[1]) && !variables.containsKey(split[1])) {
+                System.err.println("Parameter 2 not a variable or number!");
+            } else if (!ParseUtils.isDouble(split[0]) && !ParseUtils.isDouble(split[1])) {
+                System.err.println("None of the parameters is a number!");
+            } else if (!variables.containsKey(split[0]) && !variables.containsKey(split[1])) {
+                System.err.println("None of the parameters is a variable!");
+            }
             return null;
         }
-        Matrix m = variables.get(split[0]);
-        double k;
-        k = ParseUtils.parseDouble(params);
         return m.scale(k);
     }
 
@@ -114,22 +133,51 @@ class OperationsParser {
     }
 
     Matrix pow(String params) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        String[] split = ParseUtils.getParameterSplit(params);
+        if (split.length != 2) {
+            ParseUtils.wrongNumberOfParametersInFunction("pow");
+        }
+        if (!variableFound(split[0])) {
+            return null;
+        }
+        if(!ParseUtils.isNonNegativeInteger(split[1])){
+            System.err.println("Parameter 2 not a positive integer!");
+            return null;
+        }
+        Matrix m = variables.get(split[0]);
+        int e = Integer.parseInt(split[1]);
+        return m.pow(e);
     }
 
     Matrix transpose(String params) {
+        String[] split = ParseUtils.getParameterSplit(params);
+        if (split.length != 2) {
+            ParseUtils.wrongNumberOfParametersInFunction("mulS");
+        }
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
     Matrix det(String params) {
+        String[] split = ParseUtils.getParameterSplit(params);
+        if (split.length != 2) {
+            ParseUtils.wrongNumberOfParametersInFunction("mulS");
+        }
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
     Matrix inv(String params) {
+        String[] split = ParseUtils.getParameterSplit(params);
+        if (split.length != 2) {
+            ParseUtils.wrongNumberOfParametersInFunction("mulS");
+        }
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
     Matrix lu(String params) {
+        String[] split = ParseUtils.getParameterSplit(params);
+        if (split.length != 2) {
+            ParseUtils.wrongNumberOfParametersInFunction("mulS");
+        }
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }
