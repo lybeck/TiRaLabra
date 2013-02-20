@@ -52,7 +52,7 @@ class CommandProcesser {
                 case "LU":
                     return new OperationsParser().lu(params);
                 default:
-                    System.out.println("Unrecognized command.");
+                    System.err.println("Unrecognized command.");
             }
         } catch (Exception e) {
             System.err.println("Command failed! Got the following error message:");

@@ -140,7 +140,7 @@ class OperationsParser {
         if (!variableFound(split[0])) {
             return null;
         }
-        if(!ParseUtils.isNonNegativeInteger(split[1])){
+        if (!ParseUtils.isNonNegativeInteger(split[1])) {
             System.err.println("Parameter 2 not a positive integer!");
             return null;
         }
@@ -151,32 +151,42 @@ class OperationsParser {
 
     Matrix transpose(String params) {
         String[] split = ParseUtils.getParameterSplit(params);
-        if (split.length != 2) {
-            ParseUtils.wrongNumberOfParametersInFunction("mulS");
+        if (split.length != 1) {
+            ParseUtils.wrongNumberOfParametersInFunction("transpose");
         }
-        throw new UnsupportedOperationException("Not yet implemented");
+        if (!variableFound(split[0])) {
+            return null;
+        }
+        return variables.get(split[0]).transpose();
     }
 
     Matrix det(String params) {
         String[] split = ParseUtils.getParameterSplit(params);
-        if (split.length != 2) {
-            ParseUtils.wrongNumberOfParametersInFunction("mulS");
+        if (split.length != 1) {
+            ParseUtils.wrongNumberOfParametersInFunction("det");
         }
-        throw new UnsupportedOperationException("Not yet implemented");
+        if (!variableFound(split[0])) {
+            return null;
+        }
+        double det = variables.get(split[0]).det();
+        return new Matrix(new double[][]{{det}});
     }
 
     Matrix inv(String params) {
         String[] split = ParseUtils.getParameterSplit(params);
-        if (split.length != 2) {
-            ParseUtils.wrongNumberOfParametersInFunction("mulS");
+        if (split.length != 1) {
+            ParseUtils.wrongNumberOfParametersInFunction("inv");
         }
-        throw new UnsupportedOperationException("Not yet implemented");
+        if (!variableFound(split[0])) {
+            return null;
+        }
+        return variables.get(split[0]).inv();
     }
 
     Matrix lu(String params) {
         String[] split = ParseUtils.getParameterSplit(params);
         if (split.length != 2) {
-            ParseUtils.wrongNumberOfParametersInFunction("mulS");
+            ParseUtils.wrongNumberOfParametersInFunction("lu");
         }
         throw new UnsupportedOperationException("Not yet implemented");
     }
