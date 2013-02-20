@@ -189,4 +189,12 @@ public class LU {
             determinant *= -1;
         }
     }
+
+    public void print() {
+        System.out.println();
+        System.out.println("L = ");
+        permL.print();
+        System.out.println("U = ");
+        u.print();
+    }
 }

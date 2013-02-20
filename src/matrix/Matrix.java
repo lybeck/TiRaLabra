@@ -47,6 +47,16 @@ public class Matrix {
     }
 
     /**
+     * Creates a 1x1 matrix of the input number.
+     *
+     * @param d The only element in the matrix.
+     */
+    public Matrix(double d) {
+        this.rows = this.cols = 1;
+        data = new double[][]{{d}};
+    }
+
+    /**
      * Creates a matrix of the input. The matrix must have as many columns in
      * every row.
      *
@@ -189,7 +199,6 @@ public class Matrix {
      *
      * @param rows Numer of rows in the matrix.
      * @param cols Number of columns in the matrix.
-     * @param seed Seed for the random number generator.
      * @return A rows x cols matrix with random double values between 0 and 1.
      */
     public static Matrix rand(int rows, int cols) {
@@ -289,8 +298,7 @@ public class Matrix {
      * imax].
      *
      * @param imax Upper bound for the values.
-     * @param rows Number of rows in the matrix.
-     * @param cols Number of columns in the matrix.
+     * @param n Number of rows and columns in the matrix.
      * @return An n x n matrix with random integer values from the interval [0,
      * imax].
      * @throws IllegalArgumentException, if imax &lt 0.

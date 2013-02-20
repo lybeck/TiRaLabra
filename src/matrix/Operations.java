@@ -169,15 +169,18 @@ class Operations {
      * Takes the power of the input matrix.
      *
      * @param m Matrix to be powered.
-     * @param e Exponent, must be a non-negative integer.
+     * @param e Exponent, must be a non-negative integer or -1.
      * @return The matrix resulting from the operation m^e.
      * @throws IllegalArgumentException exponent is negative.
      */
     static Matrix pow(Matrix m, int e) {
-        if (e < 0) {
-            throw new IllegalArgumentException("Power of matrix must be a non-negative integer!");
+        if (e < -1) {
+            throw new IllegalArgumentException("Power of matrix must be a non-negative integer or -1!");
         }
         checkIfSquare(m);
+        if (e == -1) {
+            return inv(m);
+        }
         if (e == 0) {
             return Matrix.eye(m.rows);
         }

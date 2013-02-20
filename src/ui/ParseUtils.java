@@ -54,7 +54,7 @@ class ParseUtils {
     }
 
     static boolean isDouble(String toParse) {
-        String number = "[-+]?[0-9]*.?[0-9]+([eE][-+]?[0-9]+)?";
+        String number = "[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?";
         String regex = number + "\\s*(/\\s*" + number + ")?";
         return Pattern.matches(regex, toParse);
     }

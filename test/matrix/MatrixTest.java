@@ -94,6 +94,18 @@ public class MatrixTest {
     }
 
     @Test
+    public void singleDoubleParameterConstructorWorks() {
+        double d = 5.3;
+        Matrix m = new Matrix(d);
+        assertEquals(1, m.rows);
+        assertEquals(1, m.cols);
+        assertEquals(1, m.data.length);
+        assertEquals(1, m.data[0].length);
+        Matrix e = new Matrix(new double[][]{{d}});
+        TestUtils.assertMatrixEqual(e, m);
+    }
+
+    @Test
     public void primitiveMatrixParameterConstructorWorks() {
         int r = 5;
         int c = 7;

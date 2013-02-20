@@ -1,0 +1,9 @@
+# this is a test file
+
+A = parse(2 3; 4 5)
+B = parse(3 4; 2 8)
+
+disp('A * B =')
+prod = A * B;
+disp(prod)
+

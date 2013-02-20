@@ -13,7 +13,7 @@ import matrix.Matrix;
  */
 class MatrixParser {
 
-    Matrix parseString(String string) {
+    Variable parseString(String string) {
         string = string.trim();
         String[] split = getParseSplit(string);
         int rows = split.length;
@@ -21,6 +21,9 @@ class MatrixParser {
         if (cols == -1) {
             System.err.println("Unparsable string!");
             return null;
+        }
+        if (rows == 1 && cols == 1) {
+            return new Variable(ParseUtils.parseDouble(split[0]));
         }
         double[][] m = new double[rows][cols];
         for (int i = 0; i < rows; i++) {
@@ -30,7 +33,7 @@ class MatrixParser {
                 m[i][j] = ParseUtils.parseDouble(row.next());
             }
         }
-        return new Matrix(m);
+        return new Variable(new Matrix(m));
     }
 
     private String[] getParseSplit(String string) {
@@ -53,64 +56,104 @@ class MatrixParser {
         return cols;
     }
 
-    Matrix zeros(String params) {
+    Variable zeros(String params) {
         int[] ints = ParseUtils.getParameterSplitAsInts(params);
         if (ints.length == 1) {
-            return new Matrix(ints[0]);
+            if (ints[0] == 1) {
+                return new Variable(0);
+            }
+            return new Variable(new Matrix(ints[0]));
         }
         if (ints.length == 2) {
-            return new Matrix(ints[0], ints[1]);
+            if (ints[0] == 1 && ints[1] == 1) {
+                return new Variable(0);
+            }
+            return new Variable((new Matrix(ints[0], ints[1])));
         }
         ParseUtils.wrongNumberOfParametersInFunction("zeros");
         return null;
     }
 
-    Matrix ones(String params) {
+    Variable ones(String params) {
         int[] ints = ParseUtils.getParameterSplitAsInts(params);
         if (ints.length == 1) {
-            return Matrix.ones(ints[0]);
+            if (ints[0] == 1) {
+                return new Variable(1);
+            }
+            return new Variable(Matrix.ones(ints[0]));
         }
         if (ints.length == 2) {
-            return Matrix.ones(ints[0], ints[1]);
+            if (ints[0] == 1 && ints[1] == 1) {
+                return new Variable(1);
+            }
+            return new Variable(Matrix.ones(ints[0], ints[1]));
         }
         ParseUtils.wrongNumberOfParametersInFunction("ones");
         return null;
     }
 
-    Matrix eye(String params) {
+    Variable eye(String params) {
         int[] ints = ParseUtils.getParameterSplitAsInts(params);
         if (ints.length == 1) {
-            return Matrix.eye(ints[0]);
+            if (ints[0] == 1) {
+                return new Variable(1);
+            }
+            return new Variable(Matrix.eye(ints[0]));
         }
         if (ints.length == 2) {
-            return Matrix.eye(ints[0], ints[1]);
+            if (ints[0] == 1 && ints[1] == 1) {
+                return new Variable(1);
+            }
+            return new Variable(Matrix.eye(ints[0], ints[1]));
         }
         ParseUtils.wrongNumberOfParametersInFunction("eye");
         return null;
     }
 
-    Matrix rand(String params) {
+    Variable rand(String params) {
         int[] ints = ParseUtils.getParameterSplitAsInts(params);
+        Matrix m;
         if (ints.length == 1) {
-            return Matrix.rand(ints[0]);
+            m = Matrix.rand(ints[0]);
+            if (ints[0] == 1) {
+                return new Variable(m.at(0, 0));
+            }
+            return new Variable(m);
         }
         if (ints.length == 2) {
-            return Matrix.rand(ints[0], ints[1]);
+            m = Matrix.rand(ints[0], ints[1]);
+            if (ints[0] == 1 && ints[1] == 1) {
+                return new Variable(m.at(0, 0));
+            }
+            return new Variable(m);
         }
         ParseUtils.wrongNumberOfParametersInFunction("rand");
         return null;
     }
 
-    Matrix randi(String params) {
+    Variable randi(String params) {
         int[] ints = ParseUtils.getParameterSplitAsInts(params);
+        Matrix m;
         if (ints.length == 2) {
-            return Matrix.randi(ints[0], ints[1]);
+            m = Matrix.randi(ints[0], ints[1]);
+            if (ints[1] == 1) {
+                return new Variable(m.at(0, 0));
+            }
+            return new Variable(m);
         }
         if (ints.length == 3) {
-            return Matrix.randi(ints[0], ints[1], ints[2]);
+            m = Matrix.randi(ints[0], ints[1], ints[2]);
+            if (ints[1] == 1 && ints[2] == 1) {
+                return new Variable(m.at(0, 0));
+            }
+            return new Variable(m);
         }
         if (ints.length == 4) {
-            return Matrix.randi(ints[0], ints[1], ints[2], ints[3]);
+            m = Matrix.randi(ints[0], ints[1], ints[2], ints[3]);
+            if (ints[2] == 1 && ints[3] == 1) {
+                return new Variable(m.at(0, 0));
+            }
+            return new Variable(m);
         }
         ParseUtils.wrongNumberOfParametersInFunction("rand");
         return null;

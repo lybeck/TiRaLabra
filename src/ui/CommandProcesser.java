@@ -4,7 +4,7 @@
  */
 package ui;
 
-import matrix.Matrix;
+import java.util.HashMap;
 
 /**
  *
@@ -12,11 +12,19 @@ import matrix.Matrix;
  */
 class CommandProcesser {
 
-    Matrix processCommand(String[] split) {
+    private OperationsParser parser;
+
+    CommandProcesser(HashMap<String, Variable> variables) {
+        parser = new OperationsParser(variables);
+    }
+    
+    
+    
+    Variable processCommand(String[] split) {
         String operation = split[0].toLowerCase().trim();
-        String params = split[1].toLowerCase().trim();
+        String params = split[1].trim();
         try {
-            switch (operation) {
+            switch (operation.toLowerCase()) {
                 case "parse":
                     return new MatrixParser().parseString(params);
                 case "zeros":
@@ -29,28 +37,30 @@ class CommandProcesser {
                     return new MatrixParser().rand(params);
                 case "randi":
                     return new MatrixParser().randi(params);
-                case "scale":
-                    return new OperationsParser().scale(params);
                 case "add":
-                    return new OperationsParser().add(params);
+                    return parser.add(params);
                 case "sub":
-                    return new OperationsParser().sub(params);
+                    return parser.sub(params);
                 case "mul":
-                    return new OperationsParser().mul(params);
-                case "mulN":
-                    return new OperationsParser().mulN(params);
-                case "mulS":
-                    return new OperationsParser().mulS(params);
+                    return parser.mul(params);
+                case "muln":
+                    return new Variable(parser.mulN(params));
+                case "muls":
+                    return new Variable(parser.mulS(params));
                 case "pow":
-                    return new OperationsParser().pow(params);
+                    return parser.pow(params);
                 case "transpose":
-                    return new OperationsParser().transpose(params);
+                    return new Variable(parser.transpose(params));
                 case "det":
-                    return new OperationsParser().det(params);
+                    return new Variable(parser.det(params));
                 case "inv":
-                    return new OperationsParser().inv(params);
-                case "LU":
-                    return new OperationsParser().lu(params);
+                    return new Variable(parser.inv(params));
+                case "lu":
+                    return new Variable(parser.lu(params));
+                case "getl":
+                    return new Variable(parser.getL(params));
+                case "getu":
+                    return new Variable(parser.getU(params));
                 default:
                     System.err.println("Unrecognized command.");
             }

@@ -70,6 +70,11 @@ public class ParseUtilsTest {
     public void testIsDouble7(){
         assertFalse(ParseUtils.isDouble("3."));
     }
+
+    @Test
+    public void testIsDouble8(){
+        assertFalse(ParseUtils.isDouble("3,14"));
+    }
     
     @Test
     public void isDoubleAcceptsFractions() {

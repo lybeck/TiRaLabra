@@ -4,6 +4,7 @@
  */
 package tiralabra;
 
+import ui.FileRunner;
 import java.util.Scanner;
 import speedTests.StrassenComparison;
 import ui.UserInterface;
@@ -28,12 +29,13 @@ class TaskSelector {
         String input;
         while (true) {
             System.out.println();
-            
+
             System.out.println("Available programs:");
 
             System.out.println();
             System.out.println("\t1: Matrix calculator");
             System.out.println("\t2: Speed comparison");
+            System.out.println("\t3: Run file");
             System.out.println();
             System.out.println("\t0: Quits the program");
             System.out.println();
@@ -49,6 +51,9 @@ class TaskSelector {
                     return true;
                 case "2":
                     new StrassenComparison().run();
+                    return true;
+                case "3":
+                    new FileRunner().run();
                     return true;
                 case "0":
                     return false;

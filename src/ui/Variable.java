@@ -17,7 +17,6 @@ class Variable {
     private Object object;
 
     Variable(Object object) {
-        this.object = object;
         if (object instanceof Matrix) {
             type = VarType.MATRIX;
         } else if (object instanceof LU) {
@@ -25,8 +24,33 @@ class Variable {
         } else if (object instanceof Double) {
             type = VarType.NUMBER;
         } else {
-            throw new IllegalArgumentException("Variable must be of type Matrix, LU or Double!");
+            type = null;
         }
+        this.object = object;
+    }
+
+    boolean isMatrix() {
+        return type == VarType.MATRIX;
+    }
+
+    boolean isNumber() {
+        return type == VarType.NUMBER;
+    }
+
+    boolean isLU() {
+        return type == VarType.LU;
+    }
+
+    Matrix getMatrix() {
+        return (Matrix) object;
+    }
+
+    Double getNumber() {
+        return (Double) object;
+    }
+
+    LU getLU() {
+        return (LU) object;
     }
 
     VarType getType() {
@@ -35,6 +59,16 @@ class Variable {
 
     Object getObject() {
         return object;
+    }
+
+    void print() {
+        if (type == VarType.MATRIX) {
+            ((Matrix) object).print();
+        } else if (type == VarType.LU) {
+            ((LU) object).print();
+        } else if (type == VarType.NUMBER) {
+            new Matrix((Double) object).print();
+        }
     }
 
     static enum VarType {
@@ -51,7 +85,7 @@ class Variable {
                 case NUMBER:
                     return "Number";
                 default:
-                    return "(none)";
+                    return "null";
             }
         }
     }
