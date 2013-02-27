@@ -1,0 +1,8 @@
+
+mul(Matrix a, Matrix b)
+    for i = 1 .. a.rows
+        for j = 1 .. b.columns
+            result(i,j) = 0
+            for k = 1 .. a.columns
+                result(i,j) += a(i,k) * b(k,j)
+    return result

@@ -1,0 +1,5 @@
+
+scale(Matrix m, float k)
+    for i = 1 .. m.rows
+        for j = 1 .. m.columns
+            m(i,j) *= k

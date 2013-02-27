@@ -1,0 +1,13 @@
+
+LU(Matrix m)
+    U = copy(m)
+    for i = 1 .. n
+        for j = i + 1 .. n
+            c = -U(j,i) / U(i,i)
+            addMulRow(U, i, j, c)
+            L(j,i) = -c
+    return L, U
+
+addMulRow(Matrix m, i, j, c)
+    for k = 1 .. n
+        m(j,k) += c * m(i,k)

@@ -1,0 +1,87 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[finnish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{verbatim}
+
+\usepackage{setspace}
+\onehalfspacing
+
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\newcommand{\pseudo}[1]{{\small\verbatiminput{pseudocode/#1.txt}}}
+
+
+\author{Lasse Lybeck}
+\title{Toteutusdokumentti}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Ohjelman yleisrakenne}
+
+
+\section{Saavutetut aika- ja tilavaativuudet}
+
+\subsection{Yhteenlasku}
+
+\pseudo{add}
+
+Kahden $m\times n$ matriisin yhteenlaskun aikavaatimukseksi saadaan selvästi $O(mn)$.
+Jos kyseessä on kahden $n\times n$ neliömatriisin yhteenlasku saadaan siis aikavaatimukseksi $O(n^2)$.
+
+Vähennyslasku on täysin ekvivalentti yhteenlaskun kanssa, joten vaativuudet ovat samat.
+
+\subsection{Kertolasku}
+
+\subsubsection{Skalaarilla kertominen}
+
+\pseudo{scale}
+
+$m\times n$ matriisin skalaarilla kertominen on selvästi aikavaativuudeltaan $O(mn)$. $n\times n$ neliömatriisille
+tämä siis on $O(n^2)$.
+
+\subsubsection{Matriisikertolasku}
+
+\pseudo{mul}
+
+Matriisikertolaskussa ensimmäisen matriisin sarakkeiden määrä tulee olla sama kuin toisen matriisin rivien määrä.
+Matriisien $A\in \R^{m\times n}$ ja $B\in \R^{n\times p}$ tuloksena saadaan siis matriisi $AB\in \R^{m\times p}$.
+Naiivia algoritmia (yllä) seuraamalla aikavaativuudeksi saadaan $O(mnp)$, joka neliömatriisien $A,B\in \R^{n\times n}$
+tapauksessa on $O(n^3)$.
+
+Kappaleessa \ref{sec:vertailu} sivulla \pageref{sec:vertailu} verrataan naiivia algoritmia Strassenin asymptoottisesti
+nopeampaan algoritmiin.
+
+\subsection{Potenssiin korottaminen}
+
+\pseudo{pow}
+
+\subsection{LU-hajotelma ja determinantti}
+
+\pseudo{LU}
+
+\subsection{Käänteismatriisin laskeminen}
+
+\pseudo{inv}
+
+
+\section{Suorituskyky- ja O-analyysivertailu}\label{sec:vertailu}
+
+
+\section{Työn mahdolliset puutteet ja parannusehdotukset}
+
+
+\section{Lähteet}
+
+
+\end{document}

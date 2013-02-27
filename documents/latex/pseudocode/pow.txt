@@ -1,0 +1,8 @@
+
+pow(Matrix a, int e)
+    if e == 1
+        return a
+    else if e mod 2 == 0
+        return pow(a * a, e/2)
+    else
+        m * pow(a * a, (e-1)/2)

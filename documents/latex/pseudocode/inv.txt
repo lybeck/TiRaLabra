@@ -1,0 +1,33 @@
+
+inv(Matrix m)
+    L,U = LU(m)
+    e = eye(n,n)
+    Vector[] eCols = getColumns(e)
+    for i = 1 .. n
+        xCols[i] = solveSystem(L, U, e)
+    return matrixFromColumns(xCols)
+
+solveSystem(Matrix L, Matrix U, Matrix e)
+    z = forwardSubstitute(L, e)
+    x = backwardSubstitute(U, z)
+    return x
+
+forwardSubstitute(Matrix L, Matrix e)
+    x = new Vector(n,1)
+    x(1,1) = e(1,1)
+    for i = 1 .. n
+        sum = 0
+        for j = 1 .. i - 1
+            sum += L(i,j) * x(j,1)
+        x(i,1) = e(i,1) - sum
+    return x
+
+backwardSubstitute(Matrix U, Matrix e)
+    x = new Vector(n,1)
+    x(n,1) = e(n,1) / U(n,n)
+    for i = n - 1 .. 1
+        sum = 0
+        for j = n .. i + 1
+            sum += U(i,j) * x(j,1)
+        x(i,1) = (e(i,1) - sum) / U(i,i)
+    return x

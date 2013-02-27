@@ -1,0 +1,6 @@
+
+transpose(Matrix m)
+    for i = 1 .. m.rows
+        for j = 1 .. m.columns
+            result(j,i) = m(i,j)
+
