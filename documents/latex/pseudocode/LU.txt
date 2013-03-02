@@ -1,6 +1,7 @@
 
-LU(Matrix m)
-    U = copy(m)
+LU(Matrix M)
+    L = eye(n,n)
+    U = copy(M)
     for i = 1 .. n
         for j = i + 1 .. n
             c = -U(j,i) / U(i,i)
@@ -8,6 +9,6 @@ LU(Matrix m)
             L(j,i) = -c
     return L, U
 
-addMulRow(Matrix m, i, j, c)
+addMulRow(Matrix M, i, j, c)
     for k = 1 .. n
-        m(j,k) += c * m(i,k)
+        M(j,k) += c * M(i,k)

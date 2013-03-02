@@ -1,5 +1,5 @@
 
-function add(Matrix a, Matrix b)
+add(Matrix a, Matrix b)
     for i = 1 .. a.rows
         for j = 1 .. a.columns
             result(i,j) = a(i,j) + b(i,j)

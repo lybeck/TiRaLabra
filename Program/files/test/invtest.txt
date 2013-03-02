@@ -1,0 +1,10 @@
+
+
+A = rand(1000);
+
+disp('A is a 1000x1000 matrix.')
+disp('Calculating the inverse of A...')
+
+inv(A);
+
+disp('Done!')

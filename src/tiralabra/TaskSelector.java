@@ -8,6 +8,7 @@ import ui.FileRunner;
 import java.util.Scanner;
 import speedTests.StrassenComparison;
 import ui.UserInterface;
+import ui.Solver;
 
 /**
  *
@@ -34,8 +35,8 @@ class TaskSelector {
 
             System.out.println();
             System.out.println("\t1: Matrix calculator");
-            System.out.println("\t2: Speed comparison");
-            System.out.println("\t3: Run file");
+            System.out.println("\t2: Run file");
+            System.out.println("\t3: Equation solver");
             System.out.println();
             System.out.println("\t0: Quits the program");
             System.out.println();
@@ -50,10 +51,10 @@ class TaskSelector {
                     UserInterface.getInstance().run();
                     return true;
                 case "2":
-                    new StrassenComparison().run();
+                    new FileRunner().run();
                     return true;
                 case "3":
-                    new FileRunner().run();
+                    new Solver().run();
                     return true;
                 case "0":
                     return false;

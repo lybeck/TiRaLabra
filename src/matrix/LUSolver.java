@@ -10,7 +10,7 @@ package matrix;
  *
  * @author Lasse
  */
-class LUSolver {
+public class LUSolver {
 
     /**
      * Calculates the inverse matrix of the input matrix if possible. The method
@@ -61,7 +61,7 @@ class LUSolver {
      * @return The resulting vector x, if the solution is unique, otherwise
      * null.
      */
-    static Matrix solveLinearEquation(LU lu, Matrix b) {
+    public static Matrix solveLinearEquation(LU lu, Matrix b) {
         int n = lu.getN();
         if (b.rows != n || b.cols != 1) {
             throw new IllegalArgumentException("Not a valid system of equations!");

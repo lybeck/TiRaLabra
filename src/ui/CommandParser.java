@@ -139,15 +139,6 @@ class CommandParser {
             return null;
         }
 
-        String[] operatorSplit = command.split(operatorRegEx);
-        if (operatorSplit.length == 2) {
-            return splitAndCallByOperator(command);
-        }
-        if (operatorSplit.length > 2) {
-            System.err.println("Too many operators in command!");
-            return null;
-        }
-
         command = command.trim();
 
         if (variables.containsKey(command)) {
@@ -185,36 +176,6 @@ class CommandParser {
         System.out.println();
         System.out.println(varName + " =");
         result.print();
-    }
-
-    private Variable splitAndCallByOperator(String command) {
-        for (int i = 0; i < operators.length; i++) {
-            if (command.contains(operators[i] + "")) {
-                String[] split;
-                if (operators[i] == '^') {
-                    split = command.split("[\\^]");
-                } else {
-                    split = command.split("[" + operators[i] + "]");
-                }
-                return callByOperator(operators[i], split);
-            }
-        }
-        return null;
-    }
-
-    private Variable callByOperator(char operator, String[] split) {
-        switch (operator) {
-            case '+':
-                return calculateCommand("add(" + split[0] + "," + split[1] + ")");
-            case '-':
-                return calculateCommand("sub(" + split[0] + "," + split[1] + ")");
-            case '*':
-                return calculateCommand("mul(" + split[0] + "," + split[1] + ")");
-            case '^':
-                return calculateCommand("pow(" + split[0] + "," + split[1] + ")");
-            default:
-                return null;
-        }
     }
 
     private boolean display(String param) {

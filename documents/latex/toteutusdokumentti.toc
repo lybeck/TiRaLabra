@@ -1,0 +1,11 @@
+\select@language {finnish}
+\contentsline {section}{\numberline {1}Ohjelman yleisrakenne}{2}
+\contentsline {section}{\numberline {2}Saavutetut aikavaativuudet}{2}
+\contentsline {subsection}{\numberline {2.1}Yhteenlasku}{2}
+\contentsline {subsection}{\numberline {2.2}Kertolasku}{2}
+\contentsline {subsubsection}{\numberline {2.2.1}Skalaarilla kertominen}{2}
+\contentsline {subsubsection}{\numberline {2.2.2}Matriisikertolasku}{3}
+\contentsline {subsection}{\numberline {2.3}Potenssiin korottaminen}{3}
+\contentsline {subsection}{\numberline {2.4}LU-hajotelma ja determinantti}{4}
+\contentsline {subsection}{\numberline {2.5}K\IeC {\"a}\IeC {\"a}nteismatriisin laskeminen}{5}
+\contentsline {section}{\numberline {3}Suorituskyky- ja O-analyysivertailu}{7}

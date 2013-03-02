@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.2.24)  27 FEB 2013 23:50
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.2.24)  2 MAR 2013 14:44
 entering extended mode
 **toteutusdokumentti.tex
 
@@ -342,74 +342,108 @@ Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
 \verbatim@line=\toks22
 \verbatim@in@stream=\read1
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip46
+\bibsep=\skip47
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count100
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\setspace\setspace.sty"
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
 (C:\Users\Lasse\Documents\NetBeansProjects\TiRaLabra\documents\latex\toteutusdo
 kumentti.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Try loading font information for U+msa on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Try loading font information for U+msa on input line 29.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 28.
+LaTeX Font Info:    Try loading font information for U+msb on input line 29.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-)
+) [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+(C:\Users\Lasse\Documents\NetBeansProjects\TiRaLabra\documents\latex\toteutusdo
+kumentti.toc)
+\tf@toc=\write3
+ [1]
 File: pseudocode/add.txt  (verbatim)
 File: pseudocode/scale.txt  (verbatim)
-
-Overfull \hbox (2.77676pt too wide) in paragraph at lines 50--52
+ [2]
+Overfull \hbox (2.77676pt too wide) in paragraph at lines 67--69
 []$\OML/cmm/m/it/10 m \OMS/cmsy/m/n/10  \OML/cmm/m/it/10 n$ \OT1/cmr/m/n/10 ma
 t-rii-sin ska-laa-ril-la ker-to-mi-nen on selv[]asti ai-ka-vaa-ti-vuu-del-taan 
 $\OML/cmm/m/it/10 O\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 mn\OT1/cmr/m/n/10 )$.
  []
 
 File: pseudocode/mul.txt  (verbatim)
-[1
-
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
 File: pseudocode/pow.txt  (verbatim)
+[3]
 File: pseudocode/LU.txt  (verbatim)
- [2]
+ [4]
+Overfull \hbox (9.50069pt too wide) in paragraph at lines 138--142
+[]\OT1/cmr/m/n/10 Matriisin de-ter-mi-nan-tin las-ke-mi-nen seu-raa suo-raan ma
+t-rii-sin LU-hajotelmasta.
+ []
+
+
+Overfull \hbox (18.78383pt too wide) in paragraph at lines 152--155
+\OT1/cmr/m/n/10 rat-kai-se-mi-seen, miss[]a $\OML/cmm/m/it/10 I \OMS/cmsy/m/n/1
+0 2 \U/msb/m/n/10 R[]$ \OT1/cmr/m/n/10 on yk-sikk[]omatriisi. Mat-rii-sil-la $\
+OML/cmm/m/it/10 M$ \OT1/cmr/m/n/10 on k[]a[]anteismatriisi
+ []
+
+
+Overfull \hbox (19.50078pt too wide) in paragraph at lines 164--168
+[]\OT1/cmr/m/n/10 Yht[]al[]oryhm[]an rat-kai-se-mi-nen on no-pe-aa kun tie-det[
+]a[]an mat-rii-sin $\OML/cmm/m/it/10 A$ \OT1/cmr/m/n/10 LU-hajotelma.
+ []
+
+[5]
 File: pseudocode/inv.txt  (verbatim)
- [3] [4]
+ [6] [7] [8] [9]
 (C:\Users\Lasse\Documents\NetBeansProjects\TiRaLabra\documents\latex\toteutusdo
 kumentti.aux) ) 
 Here is how much of TeX's memory you used:
- 1747 strings out of 493921
- 20192 string characters out of 3147282
- 74037 words of memory out of 3000000
- 5033 multiletter control sequences out of 15000+200000
+ 2078 strings out of 493921
+ 24231 string characters out of 3147282
+ 83650 words of memory out of 3000000
+ 5357 multiletter control sequences out of 15000+200000
  11969 words of font info for 47 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,6n,24p,235b,291s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,8n,24p,235b,285s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx
 10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
-C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
-y7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb><C
-:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on toteutusdokumentti.pdf (4 pages, 127752 bytes).
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+r5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmtt9.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/symbols/msbm10.pfb>
+Output written on toteutusdokumentti.pdf (10 pages, 193599 bytes).
 PDF statistics:
- 63 PDF objects out of 1000 (max. 8388607)
+ 99 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
