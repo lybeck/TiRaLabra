@@ -48,7 +48,11 @@ class CommandParser {
     }
 
     private void printHelp() {
-        System.out.println("Help is not yet implemented...");
+        System.out.println();
+        System.out.println("Type \"vars\" to get list of all variables.");
+        System.out.println("Type \"quit\" or \"exit\" to exit the program.");
+        System.out.println("For more help, see instructions manual.");
+        System.out.println();
     }
 
     private boolean isValidVariableName(String varName) {

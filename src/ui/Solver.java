@@ -70,7 +70,9 @@ public class Solver {
             try {
                 parseLine(line, a, i);
             } catch (Exception e) {
-                System.out.println("Not a parsable line!");
+                System.out.println("Not a parsable line or wrong number of inputs!");
+                System.out.println("Should be " + (n + 1) + " numbers!");
+                System.out.println();
                 --i;
                 continue;
             }
@@ -102,16 +104,16 @@ public class Solver {
 
         Matrix m = new Matrix(mat);
         Matrix rhs = new Matrix(b);
-        
+
         System.out.println();
         System.out.println("Equation Ax = b:");
         System.out.println();
-        
+
         System.out.println("A =");
         m.print();
         System.out.println("b =");
         rhs.print();
-        
+
         if (m.det() == 0) {
             System.out.println("No solution found!");
             System.out.println("Determinant of A 0.");
@@ -119,7 +121,7 @@ public class Solver {
             return;
         }
         Matrix solution = LUSolver.solveLinearEquation(m.lu(), rhs);
-        
+
         System.out.println("x =");
         solution.print();
     }
