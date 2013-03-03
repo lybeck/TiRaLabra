@@ -240,31 +240,31 @@ class OperationsParser {
             }
         }
         if (var2 == null) {
-            if (ParseUtils.isDouble(split[0])) {
+            if (ParseUtils.isDouble(split[1])) {
                 var2 = new Variable(ParseUtils.parseDouble(split[1]));
             } else {
-                throw new IllegalArgumentException("Parameter 1 not a number!");
+                throw new IllegalArgumentException("Parameter 2 not a number!");
             }
         }
         if (!var2.isNumber()) {
             throw new IllegalArgumentException("Parameter 1 not a number!");
         }
-        if(var1.isLU()){
+        if (var1.isLU()) {
             throw new IllegalArgumentException("Cannot take power of a LU!");
         }
-        
+
         if (var1.isNumber()) {
             return new Variable(Math.pow(var1.getNumber(), var2.getNumber()));
         }
         if (var1.isMatrix()) {
             double num = var2.getNumber();
-            if(num != Math.floor(num) || num < -1){
+            if (num != Math.floor(num) || num < -1) {
                 throw new IllegalArgumentException(num + " not an integer >= -1.");
             }
             int e = (int) num;
             return new Variable(var1.getMatrix().pow(e));
         }
-        
+
         return null;
     }
 
@@ -298,7 +298,11 @@ class OperationsParser {
         if (!variableFound(split[0])) {
             return null;
         }
-        return getMatrix(split[0]).inv();
+        Matrix m = getMatrix(split[0]).inv();
+        if (m == null) {
+            System.err.println("Matrix singular! Inverse does not exist.");
+        }
+        return m;
     }
 
     LU lu(String params) {
